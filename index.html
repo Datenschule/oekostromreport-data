@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ökostrombericht 2019</title>
+    <script src="node_modules/lunr/lunr.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    Hello
+
+    <div id="app">
+      {{ message }}
+    </div>
+
+    <script>
+     document.addEventListener("DOMContentLoaded", function () {
+
+       Vue.prototype.$http = axios;
+
+       Vue.component('v-search', {
+         props: [],
+         template: `<label>Suche <input type="text" placeholder="Suche"></label>`,
+         methods: {},
+         computed: {}
+       })
+
+       Vue.component('v-item', {
+         props: ['item'],
+         template: `<li>
+           <p><strong>{{ item['Firmenname'] }}</strong><br>
+             {{ item['Adresse'] }} {{ item['PLZ'] }} {{ item['Stadt'] }} - <a :href="item['URL']">Website</a><br>
+               <a :href="item['Link Stromkennzeichnung']">Stromkennzeichnung</a><br>
+                 {{ reason( item['RoWo-Kriterien'] )}}</p>
+         </li>`,
+         methods: {
+           reason(ident) {
+             const reasons = {
+               A: "❌ Anbieter vertreibt neben Ökostrom auch Strom aus fossilen Energieträgern",
+               B: "❌ Anbieter gehört / ist angeschlossen an einen Konzern der Atom- oder Kohlekraftwerke betreibt oder mit Strom aus diesen Quellen (oder andern Fossielen Energieträgern) handelt",
+               C: "❌ Anbieter macht keinerlei Angaben zu Investitionen oder sonstige Maßnahmen zur Förderung der Energiewende",
+               D: "❌ Beteiligung von Atom- und Kohlekonzernen an den Kraftwerken?",
+               R: "🏡 Regionale Ökostrom-Anbieter: Anbieter die den RoWo Kriterien (A-D) entsprechen, aber kein überregionales Angebot haben",
+               'R?': "🏡 Regionaler Ökostrom-Anbieter der im schnellcheck RoWo Kriterien (A-B) entspricht",
+               X: "✔️ Anbieter erfüllt Rowo Kriterien (Kriterien A-R sind erfüllt)",
+               N: "❓ Reiner Netzbetreiber ohne eigenes Versorgungsangebot",
+               '?': "❌ Angaben auf Website uneindeutig ggf. noch mal genauer überprüfen"
+             }
+             return `${ reasons[ident] ? reasons[ident] : '😵 Error Will Robinson'  }`;
+           }
+         }
+       })
+
+       Vue.component('v-list', {
+         props: ['list'],
+         template: `<ul>
+           <v-item v-for="item in list" :item="item"></v-item>
+         </ul>`
+       })
+
+       var app = new Vue({
+         el: '#app',
+         data: {
+           message: 'Hello Vue!',
+           providers: []
+         },
+         template: `<div>
+           <v-search></v-search>
+             <v-list :list="this.providers"></v-list>
+         </div>`,
+         mounted: function() {
+           const url = '/assets/providerdata-20190826.json';
+           fetch(url).then((response)=>{
+             return response.json();
+           }).then((data)=>{
+             this.providers = data;
+             //console.log(this.providers);
+           })
+         }
+       })
+
+     })
+
+    </script>
+  </body>
+</html>
