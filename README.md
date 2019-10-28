@@ -1,18 +1,14 @@
-Client side lunr search and vueJS
+# Prototyp für clientseitige Suche
+
+Mit VueJS und Lunr
 
 
+## Scripts
 
-https://fabiofranchino.com/blog/how-to-make-a-client-side-search-engine-with-vue-and-lunr/
+`assets/providers-<>.csv` wird generiert aus dem Arbeitsspeadsheet via OpenRefine.
 
-https://lunrjs.com/guides/getting_started.html
+Dependencies installieren nicht vergessen! `$ yarn install`
 
+`$ yarn run everything` wandelt das csv in json um und erstellt den lunr Suchindex.
 
-
-todo
-
-- write script to build lunr index from json
-- load lunr index
-- build search interface in vue
-- hash and save json and index in localstorage
-- (run scripts with GH actions)
-- quick deploy with netlify
+`$ yarn run cp2docs` kopiert die relevanten Dateien in den `docs` Ordner für GitHub Pages.
