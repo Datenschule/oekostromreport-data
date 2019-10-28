@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ökostrom ist nicht gleich Ökostrom. Suche nach deinen Stromanbieter">
     <title>Ökostrombericht 2019</title>
-    <script src="node_modules/lunr/lunr.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="node_modules/vue/dist/vue.js"></script>
+    <script defer src="node_modules/lunr/lunr.js"></script>
+    <script defer src="node_modules/vue/dist/vue.min.js"></script>
   </head>
   <body>
-    Hello
+    <h1>Stromanbietersuche</h1>
 
     <div id="app">
       {{ message }}
@@ -16,38 +17,51 @@
 
     <script>
      document.addEventListener("DOMContentLoaded", function () {
-
-       Vue.prototype.$http = axios;
-
        Vue.component('v-search', {
          props: [],
-         template: `<label>Suche <input type="text" placeholder="Suche"></label>`,
+         template: `
+           <label>Suche
+             <input type="text"
+                    placeholder="zB Anbietername oder Website"
+                    @input="$emit('typing', $event.target.value)">
+           </label>`,
          methods: {},
          computed: {}
        })
 
        Vue.component('v-item', {
          props: ['item'],
-         template: `<li>
-           <p><strong>{{ item['Firmenname'] }}</strong><br>
-             {{ item['Adresse'] }} {{ item['PLZ'] }} {{ item['Stadt'] }} - <a :href="item['URL']">Website</a><br>
-               <a :href="item['Link Stromkennzeichnung']">Stromkennzeichnung</a><br>
-                 {{ reason( item['RoWo-Kriterien'] )}}</p>
+         template: `
+           <li>
+             <h4>{{ item['Firmenname'] }}</h4>
+             <p>{{ reason( item['RoWo-Kriterien'] )}}</p>
+             <p>
+               <span v-if="item['Stadt'] != ''">{{ item['Adresse'] }},
+                 {{ item['PLZ'] }} {{ item['Stadt'] }}</span><br>
+               <a v-if="item['URL'] != ''"
+                  :href="item['URL']">Website</a>
+               <a v-if="item['Kennzeichnung Link'] != ''"
+                  :href="item['Kennzeichnung Link']">Stromkennzeichnung</a>
+             </p>
+             <p v-if="item['Anmerkungen'] != ''"><em>Anmerkung: {{ item['Anmerkungen']}}</em></p>
+             <p v-if="item['Bemerkung'] != ''"><em>Bemerkung: {{ item['Bemerkung']}}</em></p>
          </li>`,
          methods: {
            reason(ident) {
              const reasons = {
-               A: "❌ Anbieter vertreibt neben Ökostrom auch Strom aus fossilen Energieträgern",
-               B: "❌ Anbieter gehört / ist angeschlossen an einen Konzern der Atom- oder Kohlekraftwerke betreibt oder mit Strom aus diesen Quellen (oder andern Fossielen Energieträgern) handelt",
-               C: "❌ Anbieter macht keinerlei Angaben zu Investitionen oder sonstige Maßnahmen zur Förderung der Energiewende",
-               D: "❌ Beteiligung von Atom- und Kohlekonzernen an den Kraftwerken?",
-               R: "🏡 Regionale Ökostrom-Anbieter: Anbieter die den RoWo Kriterien (A-D) entsprechen, aber kein überregionales Angebot haben",
-               'R?': "🏡 Regionaler Ökostrom-Anbieter der im schnellcheck RoWo Kriterien (A-B) entspricht",
-               X: "✔️ Anbieter erfüllt Rowo Kriterien (Kriterien A-R sind erfüllt)",
+               A: "❌ Anbieter vertreibt nicht zu 100% Ökostrom",
+               B: "❌ Eigentumsrechtliche Verflechtungen oder oder Verkauf von nicht regenerativen Energien eines, am Anbieter, beteiligten Unternehmens",
+               C: "❌ Große, überregionale Anbieter die keinen erkennbare (auch keine eigenen EE Anlagen) zusätzlichen Beitrag zur Energiewende leisten",
+               D: "❌ Betreiber von Anlagen aus denen Strom Bezogen produzieren oder verkaufen Strom aus Kohl-Atomenergie",
+               R: "🏡 Regionale Anbieter die den oben genannten Kriterien entsprechen",
+               RC: "🏡 Regionale Anbieter die keinen erkennbare (auch keine eigenen EE Anlagen) zusätzlichen Beitrag zur Energiewende leisten",
+               X: "✔️ Überregionale Anbieter mit 100% Ökostrom, Beiträgen zu Förderung der Energiewende und ohne erkennbare Verflechtungen mit Unternehmen die mit Kohle oder Atomstrom handeln oder entsprechende Kraftwerke besitzen",
+               XX: "🙃 Alternative Anbieter mit eher Vermittelnder / Beratender Funktion (z.B. regionale Direktvermarktung aus kleinstanlagen, Mietstromangebote, u.ä.), mit 100% Ökostrom",
                N: "❓ Reiner Netzbetreiber ohne eigenes Versorgungsangebot",
-               '?': "❌ Angaben auf Website uneindeutig ggf. noch mal genauer überprüfen"
+               '?': "❌ Stromkenneichung fehlt, keine Internetpräsenz oder ähnliches",
+               '0': "❓ Kein Stromanbieter / kein für uns relevantes Unternehmen"
              }
-             return `${ reasons[ident] ? reasons[ident] : '😵 Error Will Robinson'  }`;
+             return `${ reasons[ident] ? reasons[ident] : '😵 fehlende Information'  }`;
            }
          }
        })
@@ -55,7 +69,7 @@
        Vue.component('v-list', {
          props: ['list'],
          template: `<ul>
-           <v-item v-for="item in list" :item="item"></v-item>
+           <v-item v-for="item in list" :key="item.index" :item="item"></v-item>
          </ul>`
        })
 
@@ -63,20 +77,60 @@
          el: '#app',
          data: {
            message: 'Hello Vue!',
-           providers: []
+           original: [],
+           providers: [],
+           search: '',
+           results: [],
+           searchIndex: null
          },
-         template: `<div>
-           <v-search></v-search>
-             <v-list :list="this.providers"></v-list>
+         template: `
+           <div>
+             <template v-if="searchIndex">
+               <v-search v-on:typing="this.searching"></v-search>
+               <p>Anzahl Ergebnisse: {{this.results.length}}</p>
+             </template>
+             <p v-else>Daten werden geladen</p>
+             <v-list :list="this.results"></v-list>
          </div>`,
          mounted: function() {
-           const url = '/assets/providerdata-20190826.json';
+           const url = '/assets/providers.json';
            fetch(url).then((response)=>{
              return response.json();
            }).then((data)=>{
-             this.providers = data;
-             //console.log(this.providers);
+             this.original = data;
+             this.providers = this.original.map((v,i) => {
+               v['index'] = i;
+               return v;
+             });
+             console.log(JSON.stringify(this.providers));
+             this.buildIndex();
            })
+         },
+         methods: {
+           buildIndex() {
+             let documents = this.providers;
+             this.searchIndex = lunr(function () {
+               this.ref('index');
+               this.field('Firmenname');
+               this.field('URL');
+
+               documents.forEach((doc) => {
+                 this.add(doc)
+               }, this)
+             });
+           },
+           searching(term) {
+             if (term.length > 2) {
+               let results = this.searchIndex.search('*'+term +'*');
+               this.results = results.map(v => {
+                 let indexAsInt = parseInt(v.ref, 10);
+                 //console.log(v);
+                 return this.providers[indexAsInt];
+               })
+             } else {
+               this.results = [];
+             }
+           }
          }
        })
 

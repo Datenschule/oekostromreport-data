@@ -2,7 +2,7 @@
   "name": "oekostrom-web",
   "version": "1.0.0",
   "scripts": {
-    "2json": "yarn run csvtojson assets/providerdata-merged-20190826.csv > assets/providerdata-20190826.json"
+    "2json": "yarn run csvtojson assets/providers-final-2019-10-28.csv > assets/providers.json"
   },
   "main": "index.js",
   "license": "MIT",
