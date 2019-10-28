@@ -93,49 +93,30 @@
              <v-list :list="this.results"></v-list>
          </div>`,
          mounted: function() {
-           const url = '/assets/providers.json';
+           const url = '/dist/indexanddata.json';
            fetch(url).then((response)=>{
              return response.json();
            }).then((data)=>{
              this.original = data;
-             this.providers = this.original.map((v,i) => {
-               v['index'] = i;
-               return v;
-             });
-             console.log(JSON.stringify(this.providers));
-             this.buildIndex();
+             this.providers = this.original.store;
+             // lunr index is prebuild in scripts/build_index.js
+             this.searchIndex = lunr.Index.load(data.idx);
            })
          },
          methods: {
-           buildIndex() {
-             let documents = this.providers;
-             this.searchIndex = lunr(function () {
-               this.ref('index');
-               this.field('Firmenname');
-               this.field('URL');
-
-               documents.forEach((doc) => {
-                 this.add(doc)
-               }, this)
-             });
-           },
-           searching(term) {
+           searching(term)} {
              if (term.length > 2) {
                let results = this.searchIndex.search('*'+term +'*');
                this.results = results.map(v => {
                  let indexAsInt = parseInt(v.ref, 10);
-                 //console.log(v);
                  return this.providers[indexAsInt];
                })
              } else {
                this.results = [];
              }
            }
-         }
        })
-
      })
-
     </script>
   </body>
 </html>
