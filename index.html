@@ -104,7 +104,7 @@
            })
          },
          methods: {
-           searching(term)} {
+           searching(term) {
              if (term.length > 2) {
                let results = this.searchIndex.search('*'+term +'*');
                this.results = results.map(v => {
@@ -115,8 +115,10 @@
                this.results = [];
              }
            }
+         }
        })
      })
+
     </script>
   </body>
 </html>
