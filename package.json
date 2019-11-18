@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "2json": "mkdir -p dist && cat assets/providers-final-2019-10-28.csv | yarn run csvtojson > dist/providers.json",
+    "cpcriteria": "mkdir -p dist && cp assets/kriterien.csv dist/criteria.csv",
     "rm1stlinefromjson": "sed '1d' dist/providers.json > dist/providers.json.tmp && mv dist/providers.json.tmp dist/providers.json",
     "buildindex": "cat dist/providers.json | node scripts/build_index.js > dist/indexanddata.json",
-    "everything": "yarn run 2json && yarn run rm1stlinefromjson && yarn run buildindex",
+    "everything": "yarn run 2json && yarn run rm1stlinefromjson && yarn run buildindex && yarn run cpcriteria",
     "cp2docs": "cp dist/indexanddata.json node_modules/lunr/lunr.js node_modules/vue/dist/vue.min.js -t docs/"
   },
   "main": "index.js",

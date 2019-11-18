@@ -15,9 +15,10 @@ stdin.on('end', function () {
   documents = JSON.parse(buffer.join(''))
 
   var idx = lunr(function () {
-    this.ref('index')
-    this.field('Firmenname')
+    this.ref('index');
+    this.field('Firmenname');
     this.field('URL');
+    this.field('Stadt');
 
     documents.forEach((doc, i) => {
       doc.index = i;

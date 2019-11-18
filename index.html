@@ -6,7 +6,19 @@
     <meta name="description" content="Ökostrom ist nicht gleich Ökostrom. Suche nach deinen Stromanbieter">
     <title>Ökostrombericht 2019</title>
     <script defer src="node_modules/lunr/lunr.js"></script>
-    <script defer src="node_modules/vue/dist/vue.min.js"></script>
+    <script defer src="node_modules/vue/dist/vue.js"></script>
+    <style>
+     li, h4, p {margin: 0;}
+     ul {list-style: none; padding: 0}
+
+     li {
+       padding: 1rem;
+     }
+     li:nth-child(odd) {
+       background-color: lightgrey
+     }
+
+    </style>
   </head>
   <body>
     <h1>Stromanbietersuche</h1>
@@ -15,12 +27,14 @@
 
     <script>
      document.addEventListener("DOMContentLoaded", function () {
+       const EventBus = new Vue();
+
        Vue.component('v-search', {
          props: [],
          template: `
            <label>Suche
              <input type="text"
-                    placeholder="zB Anbietername oder Website"
+                    placeholder="zB Anbietername, Website oder Stadt"
                     @input="$emit('typing', $event.target.value)">
            </label>`,
          methods: {},
@@ -28,68 +42,83 @@
        })
 
        Vue.component('v-item', {
-         props: ['item'],
+         props: ['item', 'criteria'],
          template: `
            <li>
+             <a href="#" @click="select(item)">
              <h4>{{ item['Firmenname'] }}</h4>
-             <p>{{ reason( item['RoWo-Kriterien'] )}}</p>
-             <p>
-               <span v-if="item['Stadt'] != ''">{{ item['Adresse'] }},
-                 {{ item['PLZ'] }} {{ item['Stadt'] }}</span><br>
-               <a v-if="item['URL'] != ''"
-                  :href="item['URL']">Website</a>
-               <a v-if="item['Kennzeichnung Link'] != ''"
-                  :href="item['Kennzeichnung Link']">Stromkennzeichnung</a>
-             </p>
-             <p v-if="item['Anmerkungen'] != ''"><em>Anmerkung: {{ item['Anmerkungen']}}</em></p>
-             <p v-if="item['Bemerkung'] != ''"><em>Bemerkung: {{ item['Bemerkung']}}</em></p>
-         </li>`,
+               <p v-if="criteria[item['RoWo-Kriterien']]">{{ criteria[item['RoWo-Kriterien']]['cat']}}</p>
+             </a>
+           </li>`,
          methods: {
            reason(ident) {
-             const reasons = {
-               A: "❌ Anbieter vertreibt nicht zu 100% Ökostrom",
-               B: "❌ Eigentumsrechtliche Verflechtungen oder oder Verkauf von nicht regenerativen Energien eines, am Anbieter, beteiligten Unternehmens",
-               C: "❌ Große, überregionale Anbieter die keinen erkennbare (auch keine eigenen EE Anlagen) zusätzlichen Beitrag zur Energiewende leisten",
-               D: "❌ Betreiber von Anlagen aus denen Strom Bezogen produzieren oder verkaufen Strom aus Kohl-Atomenergie",
-               R: "🏡 Regionale Anbieter die den oben genannten Kriterien entsprechen",
-               RC: "🏡 Regionale Anbieter die keinen erkennbare (auch keine eigenen EE Anlagen) zusätzlichen Beitrag zur Energiewende leisten",
-               X: "✔️ Überregionale Anbieter mit 100% Ökostrom, Beiträgen zu Förderung der Energiewende und ohne erkennbare Verflechtungen mit Unternehmen die mit Kohle oder Atomstrom handeln oder entsprechende Kraftwerke besitzen",
-               XX: "🙃 Alternative Anbieter mit eher Vermittelnder / Beratender Funktion (z.B. regionale Direktvermarktung aus kleinstanlagen, Mietstromangebote, u.ä.), mit 100% Ökostrom",
-               N: "❓ Reiner Netzbetreiber ohne eigenes Versorgungsangebot",
-               '?': "❌ Stromkenneichung fehlt, keine Internetpräsenz oder ähnliches",
-               '0': "❓ Kein Stromanbieter / kein für uns relevantes Unternehmen"
-             }
-             return `${ reasons[ident] ? reasons[ident] : '😵 fehlende Information'  }`;
+             return this.criteria[ident];
+           },
+           select(item) {
+             EventBus.$emit('select-item', this.item);
            }
          }
        })
 
        Vue.component('v-list', {
-         props: ['list'],
+         props: ['list', 'criteria'],
          template: `<ul>
-           <v-item v-for="item in list" :key="item.index" :item="item"></v-item>
-         </ul>`
+           <v-item v-for="item in list"
+                   :key="item.index"
+                   :item="item"
+                   :criteria="criteria"></v-item>
+         </ul>`,
+       })
+
+       Vue.component('v-profile', {
+         props: ['item', 'criteria'],
+         template: `
+           <div>
+             <h2>{{this.item['Firmenname']}}</h2>
+               <template v-if="criteria[item['RoWo-Kriterien']]">
+                 <h3>{{ criteria[item['RoWo-Kriterien']]['cat']}}</h3>
+                 <p><strong>{{ criteria[item['RoWo-Kriterien']]['note']}}</strong></p>
+                 <p>{{ criteria[item['RoWo-Kriterien']]['text']}}</p>
+                 <a :href="criteria[item['RoWo-Kriterien']]['link']">Mehr über dieses Kriterium</a>
+               </template>
+               <h3>Über diesen Anbieter</h3>
+               <p>{{ item['Firmenname']}}</p>
+               <p v-if="item['Stadt']">{{ item['Adresse']}}, {{ item['PLZ']}} {{ item['Stadt']}}</p>
+               <p  v-if="item['URL']"><a :href="item['URL']">{{ item['URL']}}</a></p>
+               <h3>Über den Strom des Anbieters</h3>
+               <p>Regionaler| Überregionaler Stromanbieter <a href="#">Warum sind regionale Anbieter wichtig?</a></p>
+               <p>Stromkennzeichnung: <a :href="item['Kennzeichnung']">{{ item['Kennzeichnung']}}</a> <a href="#">Was steckt hinter der Stromkennzeichnung?</a></p>
+               <p>Ökostromlabels für ein oder mehr Stromprodukte <a href="#">Was sind Ökostromlabel?</a></p>
+           </div>`
        })
 
        var app = new Vue({
          el: '#app',
          data: {
-           message: 'Hello Vue!',
            original: [],
            providers: [],
            search: '',
            results: [],
-           searchIndex: null
+           searchIndex: null,
+           criteria: {},
+           selectedProvider: {},
+           state: 'search' // or profile
          },
          template: `
            <div>
-             <template v-if="searchIndex">
-               <v-search v-on:typing="this.searching"></v-search>
-               <p>Anzahl Ergebnisse: {{this.results.length}}</p>
+             <template v-if="state == 'search'">
+               <template v-if="searchIndex">
+                 <v-search v-on:typing="this.searching"></v-search>
+                 <p v-if="this.results != 0">Anzahl Ergebnisse für "{{this.search}}":  {{this.results.length}}</p>
+               </template>
+               <p v-else>Anbieterdaten werden geladen</p>
+               <v-list :list="this.results" :criteria="this.criteria"></v-list>
              </template>
-             <p v-else>Daten werden geladen</p>
-             <v-list :list="this.results"></v-list>
-         </div>`,
+             <template v-else>
+               <button type="button" @click="toSearch"><- Zurück zur Suche</button>
+               <v-profile :item="selectedProvider" :criteria="this.criteria"></v-profile>
+             </template>
+           </div>`,
          mounted: function() {
            const url = '/dist/indexanddata.json';
            fetch(url).then((response)=>{
@@ -100,9 +129,29 @@
              // lunr index is prebuild in scripts/build_index.js
              this.searchIndex = lunr.Index.load(data.idx);
            })
+
+           fetch('/dist/criteria.csv')
+                     .then(response => {
+                       return response.text();
+                     }).then((data) => {
+                       let criteria = data.split('\n').slice(1).map(x => x.split(';'));
+                       criteria.forEach((v, i) => {
+                         this.criteria[v[0]] = {};
+                         this.criteria[v[0]]['cat'] = v[1];
+                         this.criteria[v[0]]['note'] = v[2];
+                         this.criteria[v[0]]['text'] = v[3];
+                         this.criteria[v[0]]['link'] = v[4];
+                       });
+                     });
+
+           EventBus.$on('select-item', item => {
+             this.selectedProvider = item;
+             this.state = 'profile';
+           });
          },
          methods: {
            searching(term) {
+             this.search = term;
              if (term.length > 2) {
                let results = this.searchIndex.search('*'+term +'*');
                this.results = results.map(v => {
@@ -112,6 +161,9 @@
              } else {
                this.results = [];
              }
+           },
+           toSearch() {
+             this.state = 'search';
            }
          }
        })
