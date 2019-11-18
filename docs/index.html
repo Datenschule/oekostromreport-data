@@ -120,7 +120,7 @@
              </template>
            </div>`,
          mounted: function() {
-           const url = '/indexanddata.json';
+           const url = 'indexanddata.json';
            fetch(url).then((response)=>{
              return response.json();
            }).then((data)=>{
@@ -130,7 +130,7 @@
              this.searchIndex = lunr.Index.load(data.idx);
            })
 
-           fetch('/criteria.csv')
+           fetch('criteria.csv')
                      .then(response => {
                        return response.text();
                      }).then((data) => {
