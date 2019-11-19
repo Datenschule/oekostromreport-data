@@ -1,0 +1,19 @@
+{
+  "name": "oekostrom-web",
+  "version": "1.0.0",
+  "scripts": {
+    "2json": "mkdir -p assets/data && cat assets/data-src/providers-final-2019-10-28.csv | yarn run csvtojson > assets/data/providers.json",
+    "cpcriteria": "cp assets/data-src/kriterien.csv assets/data/criteria.csv",
+    "cpdeps": "cp node_modules/lunr/lunr.js node_modules/vue/dist/vue.min.js -t assets/js/",
+    "rm1stlinefromjson": "sed '1d' assets/data/providers.json > assets/data/providers.json.tmp && mv assets/data/providers.json.tmp assets/data/providers.json",
+    "buildindex": "cat assets/data/providers.json | node _scripts/build_index.js > assets/data/indexanddata.json",
+    "everything": "yarn run 2json && yarn run rm1stlinefromjson && yarn run buildindex && yarn run cpcriteria && yarn run cpdeps"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "lunr": "^2.3.7",
+    "vue": "^2.6.10"
+  }
+}

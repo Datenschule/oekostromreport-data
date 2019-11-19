@@ -1,0 +1,60 @@
+---
+layout: base
+---
+
+<article class="article">
+  <figure class="article__teaser-image-container">
+    <img typeof="foaf:Image" class="img-responsive" src="https://www.dev.robinwood.de/sites/default/files/styles/880_x_350/public/background.jpg?itok=AB-zt_1H" width="1024" height="407">
+    <h1 class="article__teaser-image-title">{{ page.title }}</h1>
+  </figure>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      {{ content }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="article__text">
+      </div>
+      <footer class="article__tags-container">
+      </footer>
+      <div class="share hidden-print">
+        <a href="https://twitter.com/intent/tweet?text=Ökostrom­report 2019&amp;url=https://www.dev.robinwood.de/%C3%B6kostromreport-2019&amp;via=robin_wood" class="social-media">
+          <div class="social-media__outer">
+            <svg class="icon social-media__icon social-media__icon--twitter" role="img">
+              <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#twitter">
+              </use></svg>
+          </div>
+          <span class="social-media__label">Tweet</span>
+          <span class="visually-hidden">diesen Artikel</span>
+        </a>
+
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.dev.robinwood.de/%C3%B6kostromreport-2019" class="social-media">
+          <div class="social-media__outer">
+            <svg class="icon social-media__icon social-media__icon--facebook" role="img">
+              <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#facebook">
+              </use></svg>
+          </div>
+          <span class="social-media__label">Share</span>
+          <span class="visually-hidden">diesen Artikel</span>
+        </a>
+
+        <a href="mailto:?subject=Schau dir das an&amp;body=Schau dir diesen Robin Wood Artikel an https://www.dev.robinwood.de/%C3%B6kostromreport-2019." class="social-media">
+          <div class="social-media__outer">
+            <svg class="icon social-media__icon social-media__icon--mail" role="img">
+              <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#mail">
+              </use></svg>
+          </div>
+          <span class="visually-hidden">Via Email</span>
+          <span class="social-media__label">Teilen</span>
+        </a>      </div>
+
+    </div>
+  </div>
+
+</article>
+<div class="back hidden-print">
+  <a href="{{ site.url }}/" class="back__title">◂ Zum Ökostrombericht</a>
+</div>

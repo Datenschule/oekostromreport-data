@@ -1,0 +1,35 @@
+---
+---
+
+
+.v-search {
+  background-color: #f2f2f2;
+  margin: 2rem -4rem;
+  padding: 4rem;
+
+  label {
+    font-size: 2rem;
+  }
+
+  input[type=text] {
+    display: block;
+    border: 1px solid #e2e2e2;
+    padding: 0.7em 1em;
+    width: 100%;
+    background-color: white;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 1rem;
+
+    &:nth-of-type(even) {
+      background-color: #e2e2e2;
+    }
+  }
+
+}

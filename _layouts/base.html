@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ page.title }}</title>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <link rel="stylesheet" href="https://www.robinwood.de/sites/all/themes/tweme/dist/styles/main.css">
+    <link rel="stylesheet" href="{{ site.url }}/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="{{ site.url }}/assets/favicon.png">
+
+    <script src="{{ site.url }}/assets/js/lunr.js"></script>
+    <script src="{{ site.url }}/assets/js/vue.js"></script>
+    <script src="{{ site.url }}/assets/js/search.js"></script>
+    <script>
+     window.baseurl = "{{site.url}}";
+    </script>
+  </head>
+  <body>
+
+    <div class="app">
+      <div class="app__container">
+
+        <header class="header hidden-print">
+          <nav class="navigation-meta hidden-xs">
+            <ul class="menu nav"><li class="first leaf"><a href="https://crm.robinwood.de/spenden">Spenden</a></li>
+              <li class="leaf"><a href="https://www.robinwood.de/mitglied-werden" target="_blank">Mitmachen</a></li>
+              <li class="leaf"><a href="https://crm.robinwood.de/newsletter-anmeldung" target="_blank">Newsletter</a></li>
+              <li class="leaf"><a href="https://www.robinwood-shop.de/" target="_blank">Shop</a></li>
+              <li class="leaf"><a href="/presse">Presse</a></li>
+              <li class="leaf"><a href="/kontakt">Kontakt</a></li>
+              <li class="leaf"><a href="/impressum">Impressum</a></li>
+              <li class="last leaf"><a href="/datenschutzerkl%C3%A4rung">Datenschutz</a></li>
+            </ul>  </nav>
+
+          <nav class="navigation-main">
+            <button class="navigation-main__toggle">
+              <svg class="icon navigation-main__toggle-icon" role="img">
+                <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#bars">
+                </use></svg>
+
+              <span class="visually-hidden">Toggle</span>
+              Menu
+            </button>
+
+            <div class="navigation-main__logo-container">
+              <a href="/" title="Startseite" class="">
+
+                <svg class="icon navigation-main__logo" role="img">
+                  <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#robin-wood-logo">
+                  </use></svg>
+
+                <span class="visually-hidden">
+                  Robin Wood          </span>
+              </a>
+            </div>
+
+            <div class="navigation-main__navigation-container hidden-xs">
+              <ul class="menu nav navbar-nav"><li class="first leaf"><a href="/wer-wir-sind">Wer wir sind</a></li>
+                <li class="leaf"><a href="/wir-machen-druck">Wir machen Druck</a></li>
+                <li class="leaf"><a href="/worum-es-geht">Worum es geht</a></li>
+                <li class="leaf"><a href="/was-gibt-es-neues/aktuelles" title="">Was gibt es Neues</a></li>
+
+              </ul>    </div>
+
+            <div class="navigation-main__social-media-container hidden-xs">
+              <a href="https://twitter.com/robin_wood" class="social-media">
+                <div class="social-media__outer">
+                  <svg class="icon social-media__icon social-media__icon--twitter" role="img">
+                    <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#twitter">
+                    </use></svg>
+                </div>
+                <span class="visually-hidden">Follow us on twitter</span>
+              </a>
+
+              <a href="https://www.facebook.com/robinwood.ev" class="social-media">
+                <div class="social-media__outer">
+                  <svg class="icon social-media__icon social-media__icon--facebook" role="img">
+                    <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#facebook">
+                    </use></svg>
+                </div>
+                <span class="visually-hidden">Follow us on facebook</span>
+              </a>
+            </div>
+          </nav>
+        </header>
+
+        <main class="app__main">
+
+          <div class="region region-content">
+            <section id="block-system-main" class="block block-system clearfix">
+
+              {{content}}
+
+            </section>
+          </div>
+        </main>
+
+        <footer class="footer hidden-print">
+          <div class="footer__logo-bar">
+            <svg class="icon footer__logo" role="img">
+              <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#robin-wood-logo">
+              </use></svg>
+          </div>
+
+          <div class="footer__block">
+            <address class="footer__address">
+              <strong class="footer__address-title">
+                Gewaltfreie Aktionsgemeinschaft für Natur und Umwelt
+              </strong>
+
+              <span class="footer__address-block">
+                Bremer Straße 3
+              </span>
+
+              <span class="footer__address-block">
+                21073 Hamburg
+              </span>
+            </address>
+          </div>
+
+          <div class="footer__block">
+            <a href="/kontakt" class="button button--window">Kontakt</a>
+            <a href="https://crm.robinwood.de/spenden" class="button button--window">Spende</a>
+            <a href="https://www.robinwood.de/mitglied-werden" class="button button--window">Mitmachen</a>
+            <a href="https://aktiv.robinwood.de" class="button button--window">Aktivenplattform</a>
+          </div>
+
+          <div class="footer__block">
+            <a href="https://twitter.com/robin_wood" class="social-media">
+              <div class="social-media__outer">
+                <svg class="icon social-media__icon social-media__icon--twitter" role="img">
+                  <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#twitter">
+                  </use></svg>
+              </div>
+              <span class="visually-hidden">Follow us on twitter</span>
+            </a>
+
+            <a href="https://www.facebook.com/robinwood.ev" class="social-media">
+              <div class="social-media__outer">
+                <svg class="icon social-media__icon social-media__icon--facebook" role="img">
+                  <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#facebook">
+                  </use></svg>
+              </div>
+              <span class="visually-hidden">Follow us on facebook</span>
+            </a>
+
+            <a href="https://www.youtube.com/user/RobinWoodVideo" class="social-media">
+              <div class="social-media__outer">
+                <svg class="icon social-media__icon social-media__icon--youtube" role="img">
+                  <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#youtube">
+                  </use></svg>
+              </div>
+              <span class="visually-hidden">Follow us on youtube</span>
+            </a>
+
+            <a href="https://www.instagram.com/robin.wood.e.v/" class="social-media">
+              <div class="social-media__outer">
+                <svg class="icon social-media__icon social-media__icon--instagram" role="img">
+                  <use xlink:href="/sites/all/themes/tweme/dist/images/sprite.svg#instagram">
+                  </use></svg>
+              </div>
+              <span class="visually-hidden">Follow us on instagram</span>
+            </a>
+          </div>
+        </footer>
+
+        <script src="https://www.dev.robinwood.de/sites/all/themes/bootstrap/js/bootstrap.js?q15sbh"></script>
+      </div>
+    </div>
+
+  </body>
+</html>
