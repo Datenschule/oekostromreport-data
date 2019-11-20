@@ -22,11 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
                <p v-if="criteria[item['RoWo-Kriterien']]">{{ criteria[item['RoWo-Kriterien']]['cat']}}</p>
              </a>
            </li>`,
-    computed: {
-      makeHref() {
-        return `?anbieter=${encodeURI(this.item['Firmenname'])}`;
-      }
-    },
     methods: {
       select(item) {
         EventBus.$emit('select-item', this.item);
@@ -63,7 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
                <p>Regionaler| Überregionaler Stromanbieter <a href="#">Warum sind regionale Anbieter wichtig?</a></p>
                <p>Stromkennzeichnung: <a :href="item['Kennzeichnung']">{{ item['Kennzeichnung']}}</a> <a href="#">Was steckt hinter der Stromkennzeichnung?</a></p>
                <p>Ökostromlabels für ein oder mehr Stromprodukte <a href="#">Was sind Ökostromlabel?</a></p>
-           </div>`
+               <hr>
+               <p>Link für diesen Abieter <input readonly type="text" :value="makeHref"></p>
+           </div>`,
+    computed: {
+      makeHref() {
+        return `${window.location}?anbieter=${encodeURI(this.item['Firmenname'])}`;
+      }
+    }
   });
 
   var app = new Vue({
@@ -90,7 +92,10 @@ document.addEventListener("DOMContentLoaded", function () {
              </template>
              <template v-else>
                <button type="button" @click="toSearch">◂ Zu den Suchergebnissen</button>
-               <v-profile :item="selectedProvider" :criteria="this.criteria"></v-profile>
+               <v-profile v-if=selectedProvider
+                          :item="selectedProvider"
+                          :criteria="this.criteria"></v-profile>
+              <p v-else>Anbieter nicht gefunden</p>
              </template>
            </div>`,
     mounted: function() {
