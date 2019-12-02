@@ -9,7 +9,7 @@ layout: base
   <div class="profile__mix">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        graphic
+        <canvas id="myChart" width="400" height="400"></canvas>
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="energyreport__mix">
@@ -79,3 +79,26 @@ layout: base
 <div class="back hidden-print">
   <a href="{{ site.url }}/" class="back__title">◂ Zum Ökostrombericht</a>
 </div>
+
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+
+ var myPieChart = new Chart(ctx, {
+   type: 'pie',
+   data: {
+     labels: ['Wasser', 'Wind', 'Solar'],
+     datasets: [{
+       data: [45, 53, 2],
+       backgroundColor: [
+         'rgba(54, 162, 235, 0.8)',
+         'rgba(255, 99, 132, 0.8)',
+         'rgba(255, 206, 86, 0.8)',
+       ],
+       borderWidth: 1
+     }]
+   },
+   options: {}
+ });
+
+</script>
