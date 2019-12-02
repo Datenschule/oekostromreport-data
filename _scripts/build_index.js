@@ -22,6 +22,9 @@ stdin.on('end', function () {
 
     documents.forEach((doc, i) => {
       doc.index = i;
+      if (doc['RoWo-Kriterien'] == "0") {
+        doc['RoWo-Kriterien'] = "Z"
+      }
       this.add(doc)
     }, this)
   })

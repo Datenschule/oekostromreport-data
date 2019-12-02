@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 <li>
   <a @click="select(item)">
     <h4>{{ item['Firmenname'] }}</h4>
-    <p v-if="criteria[item['RoWo-Kriterien']]">{{ criteria[item['RoWo-Kriterien']]['cat']}}</p>
   </a>
 </li>`,
       methods: {
@@ -44,25 +43,39 @@ document.addEventListener("DOMContentLoaded", function () {
     Vue.component('v-profile', {
       props: ['item', 'criteria'],
       template: `
-<div v-if="item">
-  <h2>{{this.item['Firmenname']}}</h2>
+<article v-if="item">
+  <h1>{{this.item['Firmenname']}}</h1>
+  <p>{{ criteria[item['RoWo-Kriterien']]['cat']}}</p>
   <template v-if="criteria[item['RoWo-Kriterien']]">
-    <h3>{{ criteria[item['RoWo-Kriterien']]['cat']}}</h3>
-    <p><strong>{{ criteria[item['RoWo-Kriterien']]['note']}}</strong></p>
+    <p><strong>{{ criteria[item['RoWo-Kriterien']]['title']}}</strong></h3>
     <p>{{ criteria[item['RoWo-Kriterien']]['text']}}</p>
-    <a :href="criteria[item['RoWo-Kriterien']]['link']">Mehr über dieses Kriterium</a>
+    <a :href="criteria[item['RoWo-Kriterien']]['link']">{{ criteria[item['RoWo-Kriterien']]['link_label']}}</a>
+
+    <p v-if="item['Begründung']">{{ item['Begründung'] }}</p>
+
+    <p v-if="criteria[item['RoWo-Kriterien']]['show_profile'] == 'True'">
+      Zum <a href="#">RoWo-Anbieterprofil</a> von {{this.item['Firmenname']}}
+    </p>
+
+    <p v-if="criteria[item['RoWo-Kriterien']]['show_energymix'] == 'True'">
+      Siehe <a :href="item['Kennzeichnung Link']">Strommix</a> von {{this.item['Firmenname']}}
+    </p>
+
+    <p v-if="criteria[item['RoWo-Kriterien']]['method_label']">
+      <small>{{ criteria[item['RoWo-Kriterien']]['method_label'] }}<br>
+      <a href="{{ criteria[item['RoWo-Kriterien']]['method_link'] }}">Über die Methoden</a></small>
+    </p>
   </template>
-  <h3>Über diesen Anbieter</h3>
+  <hr>
+  <h2>Allgemeine Infos zum Anbieter</h2>
   <p>{{ item['Firmenname']}}</p>
   <p v-if="item['Stadt']">{{ item['Adresse']}}, {{ item['PLZ']}} {{ item['Stadt']}}</p>
-  <p  v-if="item['URL']"><a :href="item['URL']">{{ item['URL']}}</a></p>
-  <h3>Über den Strom des Anbieters</h3>
-  <p>Regionaler| Überregionaler Stromanbieter <a href="#">Warum sind regionale Anbieter wichtig?</a></p>
-  <p>Stromkennzeichnung: <a :href="item['Kennzeichnung']">{{ item['Kennzeichnung']}}</a> <a href="#">Was steckt hinter der Stromkennzeichnung?</a></p>
-  <p>Ökostromlabels für ein oder mehr Stromprodukte <a href="#">Was sind Ökostromlabel?</a></p>
+  <p v-if="item['URL']"><a :href="item['URL']">{{ item['URL']}}</a></p>
+  <p v-if="item['Zertifizierung']">Ein oder mehrere Stromprodukte dieses Anbietern wurden mit diesen Sigeln/Labeln zertifiziert:<br>
+    {{ item['Zertifizierung'] }}</p>
   <hr>
-  <p>Link für diesen Abieter <input readonly type="text" :value="makeHref"></p>
-</div>`,
+  <p>Permalink für diesen Abieter im Ökostrombericht <input readonly type="text" :value="makeHref"></p>
+</article>`,
       computed: {
         makeHref() {
           return `${window.location}?anbieter=${encodeURI(this.item['Firmenname'])}`;
@@ -124,11 +137,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then((data) => {
               let criteria = data.split('\n').slice(1).map(x => x.split(';'));
               criteria.forEach((v, i) => {
-                this.criteria[v[0]] = {};
-                this.criteria[v[0]]['cat'] = v[1];
-                this.criteria[v[0]]['note'] = v[2];
-                this.criteria[v[0]]['text'] = v[3];
-                this.criteria[v[0]]['link'] = v[4];
+                let idx = v[0];
+                this.criteria[idx] = {};
+                this.criteria[idx]['cat'] = v[1];
+                this.criteria[idx]['title'] = v[2];
+                this.criteria[idx]['text'] = v[3];
+                this.criteria[idx]['link'] = v[4];
+                this.criteria[idx]['link_label'] = v[5];
+                this.criteria[idx]['method_label'] = v[6];
+                this.criteria[idx]['method_link'] = v[7];
+                this.criteria[idx]['show_profile'] = v[8];
+                this.criteria[idx]['show_energymix'] = v[9];
               });
             })]).then(() => {
               let params = window.location.search.split("?anbieter=");
