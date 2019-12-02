@@ -5,4 +5,4 @@
 layout: home
 ---
 
-Hier stehen dann die empfohlenen Anbieter.
+Wir haben über 1200 Anbieter von Ökostromprodukten recherchiert.
