@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
               return label;
             },
             label: function(tooltipItem, data) {
-              var item = data.datasets[0].data[tooltipItem.datasetIndex];
+              var item = data.datasets[0].data[tooltipItem.index];
               var label = item.type + 'kraft';
               return label;
             }
