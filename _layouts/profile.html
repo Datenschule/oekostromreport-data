@@ -7,16 +7,18 @@ layout: base
   <h1 class="profile__title">{{ page.title }}</h1>
 
   <div class="profile__mix">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
+    <div class="profile__flex">
+      <div class="">
         <canvas id="myChart" width="400" height="400"></canvas>
       </div>
-      <div class="col-xs-12 col-sm-6">
+      <div class="">
         <div class="energyreport__mix">
           <h3>Strommix</h3>
-          <p>90,58% Wasser</p>
-          <p>90,58% Wind</p>
-          <p>90,58% Solar</p>
+          <div data-piechart="myChart">
+            <p data-water="53.93">90,58% Wasser</p>
+            <p data-wind="46.57">90,58% Wind</p>
+            <p data-solar="1.12">90,58% Solar</p>
+          </div>
         </div>
       </div>
     </div>
@@ -79,26 +81,3 @@ layout: base
 <div class="back hidden-print">
   <a href="{{ site.url }}/" class="back__title">◂ Zum Ökostrombericht</a>
 </div>
-
-
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-
- var myPieChart = new Chart(ctx, {
-   type: 'pie',
-   data: {
-     labels: ['Wasser', 'Wind', 'Solar'],
-     datasets: [{
-       data: [45, 53, 2],
-       backgroundColor: [
-         'rgba(54, 162, 235, 0.8)',
-         'rgba(255, 99, 132, 0.8)',
-         'rgba(255, 206, 86, 0.8)',
-       ],
-       borderWidth: 1
-     }]
-   },
-   options: {}
- });
-
-</script>

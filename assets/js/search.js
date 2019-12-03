@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searching(term) {
           this.search = term;
           if (term.length > 2) {
-            let results = this.searchIndex.search('*'+term +'*');
+            let results = this.searchIndex.search(term + '~1');
             this.results = results.map(v => {
               let indexAsInt = parseInt(v.ref, 10);
               return this.providers[indexAsInt];

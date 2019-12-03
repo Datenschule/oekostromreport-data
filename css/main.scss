@@ -39,7 +39,26 @@
 
 
 .energyreport {
-  padding: .5em 2em;
+  width: 100%;
+  padding: .5em 2em 2em;
+  .profile__flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    @media (min-width: 760px) {
+      flex-wrap: nowrap;
+    }
+    //
+    canvas {
+      max-width: 300px;
+      max-height: 300px;
+    }
+  }
+  .profile__shrink {
+    flex-shrink: 1;
+  }
+
 }
 
 .energyreport__title {
@@ -122,5 +141,14 @@
     }
   }
 
+  [data-water] {
+    color: rgba(54, 162, 235, 0.8);
+  }
+  [data-wind] {
+    color: rgba(214, 233, 255, 0.8);
+  }
+  [data-solar] {
+    color: rgba(255, 206, 86, 0.8);
+  }
 
 }

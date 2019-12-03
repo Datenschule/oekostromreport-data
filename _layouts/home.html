@@ -22,18 +22,20 @@ layout: base
   <div class="row equal-height-children">
     <div class="col-xs-12 col-sm-6">
       <article class="campaign energyreport">
-        <a href="/profil" class="outer-link">
+        <a href="{{ site.url }}/profil" class="outer-link">
           <h2 class="energyreport__title">Greenpeace Energy EG</h2>
-          <div class="row">
-            <div class="col-xs-12 col-sm-6">
-              graphic
+          <div class="profile__flex">
+            <div class="profile__shrink">
+              <canvas id="chart1" width="220" height="220"></canvas>
             </div>
-            <div class="col-xs-12 col-sm-6">
+            <div class="profile__shrink">
               <div class="energyreport__mix">
-              <h3>Strommix</h3>
-              <p>90,58% Wasser</p>
-              <p>90,58% Wind</p>
-              <p>90,58% Solar</p>
+                <h3>Strommix</h3>
+                <div data-piechart="chart1">
+                  <p data-water="53.93">90,58% Wasser</p>
+                  <p data-wind="46.57">90,58% Wind</p>
+                  <p data-solar="1.12">90,58% Solar</p>
+                </div>
               </div>
               <div class="energyreport__support">
                 <p>Förderbetrag für die
@@ -48,18 +50,20 @@ layout: base
     </div>
     <div class="col-xs-12 col-sm-6">
       <article class="campaign energyreport">
-        <a href="/profil" class="outer-link">
+        <a href="{{ site.url }}/profil" class="outer-link">
           <h2 class="energyreport__title">Naturstrom</h2>
-          <div class="row">
-            <div class="col-xs-12 col-sm-6">
-              graphic
+          <div class="profile__flex">
+            <div class="profile__shrink">
+              <canvas id="chart2" width="220" height="220"></canvas>
             </div>
-            <div class="col-xs-12 col-sm-6">
+            <div class="profile__shrink">
               <div class="energyreport__mix">
                 <h3>Strommix</h3>
-                <p>90,58% Wasser</p>
-                <p>90,58% Wind</p>
-                <p>90,58% Solar</p>
+                <div data-piechart="chart2">
+                  <p data-water="95">90,58% Wasser</p>
+                  <p data-wind="4.57">90,58% Wind</p>
+                  <p data-solar="0">90,58% Solar</p>
+                </div>
               </div>
               <div class="energyreport__support">
                 <p>Förderbetrag für die
