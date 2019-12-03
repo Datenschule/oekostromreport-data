@@ -8,6 +8,9 @@ Die Düsseldorfer Naturstrom AG wurde 1998, gleich nach der Liberalisierung des 
 ## Woher kommt der Strom von Naturstrom?
 Der von Naturstrom angebotene Strom bestand im Jahr 2018 zu 99,9% aus Wasserkraft. Naturstrom bezieht den Strom vollständig über direkte Lieferverträge mit Ökostromanlagen in Deutschland und Österreich. Dabei achten Sie darauf, dass der Strombedarf von ihren Haushaltskunden ausschließlich über Kraftwerke in Deutschland gedeckt wird. Naturstrom bezog 2018 insgesamt von 35 Anlagen Strom. In diesem Jahr stammte 99,65% des Stroms von Bezugsanlagen älter als 21 Jahre. 40,2% des Stroms stammte 2018 aus Laufwasserkraftwerken mit mehr als 50 MW Installierter Leistung. 72,6 % des von Naturstrom bezogenen Stroms stammt aus Kraftwerken der Verbund Innkraftwerke GmbH bzw der Verbund Hydro Power GmbH
 
+<canvas id="barchart" data-barchart="barchart"></canvas>
+
+
 ## Wie investiert Naturstrom in die Energiewende?
 Im Preis für den Bezug von Naturstrom ist je nach Tarif ein Betrag von netto 1 Cent (regulär) oder 2 Cent (Naturstrom-Gold) pro Kilowattstunde enthalten, der für die Förderung und den Bau neuer Ökostrom-Kraftwerke und für Energiewende-Projekte. Der Großteil dieses Förderbetrags investiert Naturstrom in die Initiierung und Planung neuer Ökostromanlagen. Die Naturstrom AG initiierte zwischen 2014 und 2019 42 Windkraftanlagen mit einer Gesamtleistung von 113.600 kW und 12 PV Anlagen mit insgesamt 20.200 kW. Darüber hinaus führten sie Mieterstrom- und Nahrwärmeprojekte durch, finanzieren Bildungsarbeit und fördern Energieprojekte im globalen Süden (wie zum Beispiel der Bau einer  PV-Anlage auf dem Dach eines Krankenhauses in Brasilien). Für die Ökostromtarife der Stadtwerke Hameln und Hannover verwaltet die Naturstrom AG die Förderbeträge und investiert diese in den Bau möglichst regionaler Anlagen.
 
