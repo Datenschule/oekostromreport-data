@@ -40,7 +40,7 @@
 
 .energyreport {
   width: 100%;
-  padding: .5em 2em 2em;
+  //padding: .5em 2em 2em;
   .profile__flex {
     display: flex;
     justify-content: space-around;
@@ -57,6 +57,13 @@
   }
   .profile__shrink {
     flex-shrink: 1;
+    & + .profile__data {
+      flex: 1 0 18rem;
+    }
+  }
+
+  .profile__data {
+    flex: 0 1 32rem;
   }
 
 }
@@ -76,33 +83,41 @@
     margin-top: 0;
     margin-bottom: 0;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
   margin-bottom: 1em;
 }
 
 .energyreport__support {
   border-top: 4px dotted white;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: bold;
 }
 
 .energyreport.profile {
 
   .profile__title {
-    font-size: 1.875rem;
+    font-size: 2.6rem;
     font-family: MarkWebPro,sans-serif;
     font-weight: 700;
     line-height: 1.2;
-    color: #000;
+    color: #191919;
     display: block;
-    background-color: #FFF;
+    background-color: #a2c516;
     margin-bottom: 0;
     margin-top: 0;
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+    padding-top: 3.5rem;
     text-align: center;
     text-transform: uppercase;
+
+    img {
+      margin-left: 4rem;
+    }
+  }
+
+  .profile__chart {
+    flex: 0 1 400px
   }
 
   .profile__mix {
@@ -116,10 +131,10 @@
 
   .energyreport__mix {
     h3 {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
     p {
-      font-size: 3rem;
+      font-size: 3.5rem;
     }
   }
 
@@ -127,8 +142,8 @@
     font-family: MarkWebPro,sans-serif;
     text-align: center;
     line-height: 1.55;
-    background-color: #a2c516;
-    color: #000;
+    background-color: lightgrey;
+    color: #191919;
     padding: 3.5rem;
 
     h3 {
@@ -142,13 +157,54 @@
   }
 
   [data-water] {
-    color: rgba(54, 162, 235, 0.9);
+    color: #009ee3;
   }
   [data-wind] {
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
   }
   [data-solar] {
-    color: rgba(255, 206, 86, 0.9);
+    color: #ffff00;
+  }
+
+}
+
+
+.chartcontainer {
+  position: relative;
+
+}
+
+.chart {
+  .tick {
+    font-weight: 600;
+  }
+  .axis {
+    stroke-width: 3px;
+  }
+
+  .x.axis .domain {
+    marker-end: url('#arrowhead');
+  }
+  .label,
+  .tooltip,
+  .bar-label{
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .bar-label {
+    font-size: 12px;
+  }
+
+  .tooltip {
+    font-size: 14px;
+    line-height: 1.65
+  }
+
+  @media (min-width: 760px) {
+    margin-left: -8rem;
+    margin-right: -8rem;
   }
 
 }

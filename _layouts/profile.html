@@ -4,14 +4,16 @@ layout: base
 
 <article class="article energyreport profile">
 
-  <h1 class="profile__title">{{ page.title }}</h1>
+  <h1 class="profile__title">{{ page.title }}
+    <img src="{{ site.url }}/assets/img/naturstrom.png" width="150"></h1>
+
 
   <div class="profile__mix">
     <div class="profile__flex">
-      <div class="">
-        <canvas id="myChart" width="400" height="400"></canvas>
+      <div class="profile__chart">
+        <div id="myChart" class="chartcontainer"></div>
       </div>
-      <div class="">
+      <div class="profile__data">
         <div class="energyreport__mix">
           <h3>Strommix</h3>
           <div data-piechart="myChart">
