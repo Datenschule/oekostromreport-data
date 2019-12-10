@@ -109,17 +109,19 @@ function barChart(v) {
                 wind: '#ffffff',
                 solar: '#ffff00'}
 
-  var data = [{"x":"1944-01-01T01:16:11Z","y": 84, "type": "Wasser", "name": "Egglfing"},
-              {"x":"1942-01-01T01:07:13Z","y": 72.5, "type": "Wasser", "name": "Ering"},
-              {"x":"1965-01-01T01:07:13Z","y": 86.4, "type": "Wasser", "name": "Kraftwerk Passau-Ingling"},
-              {"x":"1960-01-01T01:07:13Z","y": 9, "type": "Wasser", "name": "Landesbergen Wasser"},
-              {"x":"1958-01-01T01:07:13Z","y": 10.6, "type": "Wasser", "name": "Langwedel"},
-              {"x":"1982-01-01T01:07:13Z","y": 48.0, "type": "Wasser", "name": "Nußdorf"},
-              {"x":"1977-01-01T01:07:13Z","y": 19.4, "type": "Wasser", "name": "Perach"},
-              {"x":"1955-01-01T01:07:13Z","y": 23.2, "type": "Wasser", "name": "Stammham"},
-              {"x":"1910-01-01T01:07:13Z","y": 0.3, "type": "Wasser", "name": "Wasserkraft Quinckeweg"},
-              {"x":"2011-01-01T01:07:13Z","y": 2.7, "type": "Wind", "name": "Windpark Stöttener Berg"},
-              {"x":"2017-01-01T01:07:13Z","y": 2.4, "type": "Wind", "name": "WP Herzebrock"}];
+  var data = [
+    {"x":"1944-01-01T01:16:11Z","y": 84, "type": "Wasser", "name": "Egglfing"},
+    {"x":"1942-01-01T01:07:13Z","y": 72.5, "type": "Wasser", "name": "Ering"},
+    {"x":"1965-01-01T01:07:13Z","y": 86.4, "type": "Wasser", "name": "Kraftwerk Passau-Ingling"},
+    {"x":"1960-01-01T01:07:13Z","y": 9, "type": "Wasser", "name": "Landesbergen Wasser"},
+    {"x":"1958-01-01T01:07:13Z","y": 10.6, "type": "Wasser", "name": "Langwedel"},
+    {"x":"1982-01-01T01:07:13Z","y": 48.0, "type": "Wasser", "name": "Nußdorf"},
+    {"x":"1977-01-01T01:07:13Z","y": 19.4, "type": "Wasser", "name": "Perach"},
+    {"x":"1955-01-01T01:07:13Z","y": 23.2, "type": "Wasser", "name": "Stammham"},
+    {"x":"1910-01-01T01:07:13Z","y": 0.3, "type": "Wasser", "name": "Wasserkraft Quinckeweg"},
+    {"x":"2011-01-01T01:07:13Z","y": 2.7, "type": "Wind", "name": "Windpark Stöttener Berg"},
+    {"x":"2017-01-01T01:07:13Z","y": 2.4, "type": "Wind", "name": "WP Herzebrock"}
+  ];
 
   data.sort( compare );
 
