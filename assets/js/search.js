@@ -49,21 +49,21 @@ document.addEventListener("DOMContentLoaded", function () {
   <template v-if="criteria[item['RoWo-Kriterien']]">
     <p><strong>{{ criteria[item['RoWo-Kriterien']]['title']}}</strong></h3>
     <p>{{ criteria[item['RoWo-Kriterien']]['text']}}</p>
-    <a :href="criteria[item['RoWo-Kriterien']]['link']">{{ criteria[item['RoWo-Kriterien']]['link_label']}}</a>
-
-    <p v-if="item['Begründung']">{{ item['Begründung'] }}</p>
 
     <p v-if="criteria[item['RoWo-Kriterien']]['show_profile'] == 'True'">
       Zum <a href="#">RoWo-Anbieterprofil</a> von {{this.item['Firmenname']}}
     </p>
 
+    <p v-if="item['Begründung']" v-html="reasoning"></p>
+
     <p v-if="criteria[item['RoWo-Kriterien']]['show_energymix'] == 'True'">
       Siehe <a :href="item['Kennzeichnung Link']">Strommix</a> von {{this.item['Firmenname']}}
     </p>
 
+    <a :href="criteria[item['RoWo-Kriterien']]['link']">{{ criteria[item['RoWo-Kriterien']]['link_label']}}</a>
     <p v-if="criteria[item['RoWo-Kriterien']]['method_label']">
       <small>{{ criteria[item['RoWo-Kriterien']]['method_label'] }}<br>
-      <a href="{{ criteria[item['RoWo-Kriterien']]['method_link'] }}">Über die Methoden</a></small>
+      <a :href="criteria[item['RoWo-Kriterien']]['method_link']">Über die Methoden</a></small>
     </p>
   </template>
   <hr>
@@ -74,11 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
   <p v-if="item['Zertifizierung']">Ein oder mehrere Stromprodukte dieses Anbietern wurden mit diesen Sigeln/Labeln zertifiziert:<br>
     {{ item['Zertifizierung'] }}</p>
   <hr>
-  <p>Permalink für diesen Abieter im Ökostrombericht <input readonly type="text" :value="makeHref"></p>
+  <p>Permalink für diesen Anbieter im Ökostrombericht <input readonly type="text" :value="makeHref"></p>
 </article>`,
       computed: {
         makeHref() {
           return `${window.location}?anbieter=${encodeURI(this.item['Firmenname'])}`;
+        },
+        reasoning() {
+          return this.item['Begründung'].replace(/###/gi, "<br>• ").replace(/##/gi, '<br>');
         }
       }
     });
