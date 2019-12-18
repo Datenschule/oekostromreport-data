@@ -51,18 +51,43 @@ layout: base
     <div class="col-xs-12 col-sm-6">
       <article class="campaign energyreport">
         <a href="{{ site.url }}profil" class="outer-link">
-          <h2 class="energyreport__title">Naturstrom</h2>
+          <h2 class="energyreport__title">Polarstern EG</h2>
           <div class="profile__flex">
             <div class="profile__shrink">
               <div class="chartcontainer" id="chart2"></div>
             </div>
-            <div class="profile__shrink profile__data">
+            <div class="profile__shrink  profile__data">
               <div class="energyreport__mix">
                 <h3>Strommix</h3>
                 <div data-piechart="chart2">
-                  <p data-water="95">90,58% Wasser</p>
-                  <p data-wind="4.57">90,58% Wind</p>
-                  <p data-solar="0">90,58% Solar</p>
+                  <p data-water="53.93">100% Wasser</p>
+                </div>
+              </div>
+              <div class="energyreport__support">
+                <p>Förderbetrag für die
+                  Energiewende<br>
+                  0,5 ct/kWh - 2 ct/ kWh
+                  je nach Tari</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </article>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <article class="campaign energyreport">
+        <a href="{{ site.url }}profil" class="outer-link">
+          <h2 class="energyreport__title">Naturstrom</h2>
+          <div class="profile__flex">
+            <div class="profile__shrink">
+              <div class="chartcontainer" id="chart3"></div>
+            </div>
+            <div class="profile__shrink profile__data">
+              <div class="energyreport__mix">
+                <h3>Strommix</h3>
+                <div data-piechart="chart3">
+                  <p data-water="95">95% Wasser</p>
+                  <p data-wind="5">5% Wind</p>
                 </div>
               </div>
               <div class="energyreport__support">
@@ -84,7 +109,9 @@ layout: base
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       {{ content }}
 
-      <div id="app"></div>
+      <div id="app"
+           data-providerdata="/assets/data/indexanddata.json"
+           data-criteriadata="/assets/data/criteria.csv"></div>
     </div>
   </div>
 
