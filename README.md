@@ -8,7 +8,9 @@ Diese Seite ist basiert auf [Jekyll](https://jekyllrb.com/) um schnell ein paar 
 Die wichtigsten Daten liegen in ``assets/data-src`. Durch Node-Scripte werden diese umgewandelt und in `assets/data` abgelegt. Die einzelnen Scripte sind in `package.json` definiert und können entweder einzeln oder gebündelt mit npm oder yarn ausgeführt werden. zB `$ yarn run everything`.
 
 An JavaScript Dateien müssen Lunr (Suche), D3 (Diagramme) und Vue (Rendering) als Dependencies eingebunden werden, zusammen mit den ausführenen Scripten, die die Suche und die Diagramme definieren.
-Sie befinden sich alle in `assets/js`.
+Sie befinden sich alle in `assets/js`. @Todo script um diese zu in 1 Produktionsscript zu mergen
+
+Einige Styles liegen, nachdem die Seite einmal gebaut wurde, in `_site/css/main.css`.
 
 
 ## Suche
