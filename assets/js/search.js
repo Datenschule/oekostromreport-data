@@ -71,7 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
   <p>{{ item['Firmenname']}}</p>
   <p v-if="item['Stadt']">{{ item['Adresse']}}, {{ item['PLZ']}} {{ item['Stadt']}}</p>
   <p v-if="item['URL']"><a :href="item['URL']">{{ item['URL']}}</a></p>
-  <p v-if="item['Zertifizierung']">Ein oder mehrere Stromprodukte dieses Anbietern wurden mit diesen Sigeln/Labeln zertifiziert:<br>
+  <p v-if="item['Kennzeichnung Link']">
+     <a :href="item['Kennzeichnung Link']" title="Zum Strommix von {{this.item['Firmenname']}}" rel="nofollow">Strommix</a> <small>(Stand 2019)</small>
+  </p>
+  <p v-if="item['Zertifizierung']">Ein oder mehrere Stromprodukte dieses Anbietern wurden mit diesen Siegeln/Labeln zertifiziert:<br>
     {{ item['Zertifizierung'] }}</p>
   <hr>
   <p>Permalink für diesen Anbieter im Ökostrombericht <input readonly type="text" :value="makeHref"></p>
