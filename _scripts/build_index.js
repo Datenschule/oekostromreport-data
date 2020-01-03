@@ -22,8 +22,8 @@ stdin.on('end', function () {
 
     documents.forEach((doc, i) => {
       doc.index = i;
-      if (doc['RoWo-Kriterien'] == "0") {
-        doc['RoWo-Kriterien'] = "Z"
+      if (doc['Kriterium-Websuche'] == "0") {
+        doc['Kriterium-Websuche'] = "Z"
       }
       this.add(doc)
     }, this)

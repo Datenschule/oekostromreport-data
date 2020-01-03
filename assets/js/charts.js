@@ -247,8 +247,8 @@ function barChart(v) {
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
 
-      /*
-        svg.selectAll(".text")
+
+      svg.selectAll(".text")
         .data(data)
         .enter()
         .append("text")
@@ -257,7 +257,7 @@ function barChart(v) {
         .attr("y", function(d) { return y(d.value) - 10; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value + ' MW'; });
-      */
+
 
 
     });

@@ -49,25 +49,25 @@ document.addEventListener("DOMContentLoaded", function () {
       template: `
 <article v-if="item">
   <h1>{{this.item['Firmenname']}}</h1>
-  <p>{{ criteria[item['RoWo-Kriterien']]['cat']}}</p>
-  <template v-if="criteria[item['RoWo-Kriterien']]">
-    <p><strong>{{ criteria[item['RoWo-Kriterien']]['title']}}</strong></h3>
-    <p>{{ criteria[item['RoWo-Kriterien']]['text']}}</p>
+  <p>{{ criteria[item['Kriterium-Websuche']]['cat']}}</p>
+  <template v-if="criteria[item['Kriterium-Websuche']]">
+    <p><strong>{{ criteria[item['Kriterium-Websuche']]['title']}}</strong></h3>
+    <p v-html="displayCriteria"></p>
 
-    <p v-if="criteria[item['RoWo-Kriterien']]['show_profile'] == 'True'">
+    <p v-if="criteria[item['Kriterium-Websuche']]['show_profile'] == 'True'">
       Zum <a href="#">RoWo-Anbieterprofil</a> von {{this.item['Firmenname']}}
     </p>
 
     <p v-if="item['Begründung']" v-html="reasoning"></p>
 
-    <p v-if="criteria[item['RoWo-Kriterien']]['show_energymix'] == 'True'">
-      Siehe <a :href="item['Kennzeichnung Link']" rel="nofollow">Strommix</a> von {{this.item['Firmenname']}}
+    <p v-if="criteria[item['Kriterium-Websuche']]['show_energymix'] == 'True'">
+      Siehe <a :href="item['Kennzeichnung Link']" rel="nofollow">Strommix</a> von {{this.item['Firmenname']}}.
     </p>
 
-    <a :href="criteria[item['RoWo-Kriterien']]['link']">{{ criteria[item['RoWo-Kriterien']]['link_label']}}</a>
-    <p v-if="criteria[item['RoWo-Kriterien']]['method_label']">
-      <small>{{ criteria[item['RoWo-Kriterien']]['method_label'] }}<br>
-      <a :href="criteria[item['RoWo-Kriterien']]['method_link']">Über die Methoden</a></small>
+    <a :href="criteria[item['Kriterium-Websuche']]['link']">{{ criteria[item['Kriterium-Websuche']]['link_label']}}.</a>
+    <p v-if="criteria[item['Kriterium-Websuche']]['method_label']">
+      <small>{{ criteria[item['Kriterium-Websuche']]['method_label'] }}<br>
+      <a :href="criteria[item['Kriterium-Websuche']]['method_link']">Über die Methoden</a>.</small>
     </p>
   </template>
   <hr>
@@ -88,7 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
           return `${window.location}?anbieter=${encodeURI(this.item['Firmenname'])}`;
         },
         reasoning() {
-          return this.item['Begründung'].replace(/###/gi, "<br>• ").replace(/##/gi, '<br>');
+          return this.item['Begründung'].replace(/###/gi, "<br><br>• ").replace(/##/gi, '<br><br>');
+        },
+        displayCriteria() {
+          return this.criteria[this.item['Kriterium-Websuche']]['text'].replace(/###/gi, "<br><br>• ");
         }
       }
     });

@@ -62,3 +62,11 @@ Das Bakendiagramm visualsiert Anzahl, Art und Alter der Kraftwerke, für die der
 Wichtig ist, dass das  `data-barchart`-Attribut gesetzt ist, danach sucht das Script. Die ID ist nur wichtig, falls mehrere Diagramme auf der Seite erscheinen sollen (Zur Zeit nicht geplant). Das `data-powerdata`-Attribut Zeit zu einem JSON mit Kraftwerksdaten des jeweiligen Anbieters.
 
 Zur Zeit bdefindet sich in `assets/data/powerplants.json` eine Testdatei mit den schematischen Struktur.
+
+
+
+## Datenaufarbeitung
+
+Hier wird kurz beschrieben, wie aus dem Excel erst die CSV und dann der Suchindex entsteht.
+
+In `assets/data-src` befindet sich eine Kopie der Recherche-Tabelle, `anbieterliste-januar-2020.xlsx`. Diese kann in [Open Refine](http://openrefine.org/) mit dem Workflow hinterlegt in `open-refine-workflow.json` bearbeitet und als CSV exportiert werden. Ein Beispiel ist `providers-january-2020.csv`, welche auch in den Scripten in `package.json` referenziert wird. Aus dieser Datei wird der Index für die Anbietersuche generiert.
