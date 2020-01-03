@@ -1,0 +1,3 @@
+wasser 87%
+wind 9%
+solar 4%

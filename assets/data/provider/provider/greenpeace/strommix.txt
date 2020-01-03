@@ -1,0 +1,3 @@
+wasser 46.53%
+wind 53.34%
+solar 0.13%

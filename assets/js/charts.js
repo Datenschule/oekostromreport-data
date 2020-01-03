@@ -104,10 +104,10 @@ function pieChart(v) {
 
 function barChart(v) {
   function compare( a, b ) {
-    if ( a.x < b.x ){
+    if ( a[5] < b[5] ){
       return -1;
     }
-    if ( a.x > b.x ){
+    if ( a[5] > b[5] ){
       return 1;
     }
     return 0;
@@ -120,11 +120,24 @@ function barChart(v) {
   var dataurl = document.querySelector('[data-powerdata]');
   dataurl = dataurl ? dataurl.dataset.powerdata : null;
 
-  var data;
+  var data = [];
   if (dataurl) {
-    fetch(dataurl).then(r => r.json()).then(d => {
-      data = d;
-      data.sort( compare );
+    fetch(dataurl).then(r => r.text()).then(d => {
+      var rows = d.split('\n').slice(1).map(x => x.split(','));
+      rows.forEach(function(r) {
+        if ( r[0] !== "") {
+          data.push(r);
+        }
+      });
+      data = data.sort( compare );
+
+      data.forEach((d) => {
+        d.date = parseInt(d[5]);
+        d.value = d[11] / 1000; // kw -> mw
+        d.type = d[3];
+        d.name = d[1];
+        d.tech = d[2];
+      });
 
       var margin = {top: 20, right: 20, bottom: 70, left: 40},
           width = 800 - margin.left - margin.right,
@@ -133,21 +146,17 @@ function barChart(v) {
       var parseDate = d3.isoParse;
 
       var y = d3.scaleLinear().range([height, 0]);
-
       var x = d3.scaleLinear()
-          .domain([1900, 2020])
+          .domain([d3.min(data, function(d) { return d.date; }) -10, 2025])
           .range([margin.right, width - margin.right]);
-
       var scaleX = d3.scaleLinear()
-          .domain([1900, 2020])
+          .domain([d3.min(data, function(d) { return d.date; }) -10, 2025])
           .range([margin.right, width - margin.right]);
-
 
       var xAxis = d3.axisBottom()
           .scale(scaleX)
           .ticks(10, 20)
           .tickFormat((d) => d);
-
       var yAxis = d3.axisLeft()
           .scale(y)
           .ticks(10);
@@ -159,11 +168,6 @@ function barChart(v) {
           .attr('preserveAspectRatio','xMinYMin')
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-      data.forEach(function(d) {
-        d.date = parseDate(d.x);
-        d.value = +d.y;
-      });
 
       svg.append("defs").append("marker")
         .attr("id", "arrowhead")
@@ -213,7 +217,7 @@ function barChart(v) {
       };
       var mousemove = function(d) {
         Tooltip
-          .html(`${d.type}kraftwerk ${d.name} <br> Erstinbetriebnahme ${d.date.getFullYear()} <br> Installierte Leistung ${d.value} MW`)
+          .html(`${d.tech} ${d.name} <br> Erstinbetriebnahme ${d.date} <br> Installierte Leistung ${d.value} MW`)
           .style("left", (d3.mouse(this)[0] + 70) + "px")
           .style("top", (d3.mouse(this)[1] + 10) + "px")
       };
@@ -239,7 +243,7 @@ function barChart(v) {
         .style("fill", function(d){ return colors[d.type.toLowerCase()]; })
         .style("stroke-width",'1px')
         .style("stroke", 'lightgrey')
-        .attr("x", function(d) { return scaleX(d.date.getFullYear()) -13; })
+        .attr("x", function(d) { return scaleX(d.date) -13; })
         .attr("width", 30)
         .attr("y", function(d) { return y(d.value); })
         .attr("height", function(d) { return height - y(d.value); })
@@ -247,18 +251,18 @@ function barChart(v) {
         .on("mousemove", mousemove)
         .on("mouseleave", mouseleave);
 
-
+/*
       svg.selectAll(".text")
         .data(data)
         .enter()
         .append("text")
         .attr("class","bar-label")
-        .attr("x", function(d) { return scaleX(d.date.getFullYear()) - 15; } )
+        .attr("x", function(d) { return scaleX(d.date) - 15; } )
         .attr("y", function(d) { return y(d.value) - 10; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value + ' MW'; });
 
-
+*/
 
     });
   } else {

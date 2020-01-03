@@ -7,7 +7,8 @@
     "cpdeps": "cp node_modules/lunr/lunr.js node_modules/vue/dist/vue.min.js -t assets/js/",
     "rm1stlinefromjson": "sed '1d' assets/data/providers.json > assets/data/providers.json.tmp && mv assets/data/providers.json.tmp assets/data/providers.json",
     "buildindex": "cat assets/data/providers.json | node _scripts/build_index.js > assets/data/indexanddata.json",
-    "everything": "yarn run 2json && yarn run rm1stlinefromjson && yarn run buildindex && yarn run cpcriteria && yarn run cpdeps"
+    "cpprovider": "cp -r assets/data-src/provider assets/data/provider",
+    "everything": "yarn run 2json && yarn run rm1stlinefromjson && yarn run buildindex && yarn run cpcriteria && yarn run cpdeps && yarn run cpprovider"
   },
   "main": "index.js",
   "license": "MIT",
