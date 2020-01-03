@@ -1,2 +1,0 @@
-wasser 90%
-wind 10%

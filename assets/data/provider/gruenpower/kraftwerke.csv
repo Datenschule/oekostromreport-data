@@ -1,5 +1,4 @@
-Anbieter,Anlagen Name,Technologie,Technologie einfach,Anlagenkennzeichnung BNetzA,Inbetriebnahme,Land,Standort,Bundesland,Eigentümer (Struktur),Betreiber,"Instalierte Leistung (Kw)
-(Höchstleistung)",Bezogene Strommenge,Einheit,Anlage EEG gefördert?
+Anbieter,Anlagen Name,Technologie,Technologie einfach,Anlagenkennzeichnung BNetzA,Inbetriebnahme,Land,Standort,Bundesland,Eigentümer (Struktur),Betreiber,"Instalierte Leistung (Kw) (Höchstleistung)",Bezogene Strommenge,Einheit,Anlage EEG gefördert?
 grün.power,SP Alzey,Solar,Solar,E31416015500060160019E00059700300,2018.0,Deutschland,Alzey,Rheinland-Pfalz,Martin Berkenkamp,Privatperson,213.0,1353.923,kWh,
 grün.power,SP Kirchhardt,Solar,Solar,E10843010000000000000084504200000,2015.0,Deutschland,Kirchardt,Baden-Württemberg,EnerGeno Kirchardt GbR,Projektierer und Betreiber auf genossenschatlicher Basis,2922.0,34364.133,kWh,
 grün.power,WP Ebersheim Nord,Windenergieanlagen,Wind,E31060010000000072131001000100095,2000.0,Deutschland,Mainz-Ebersheim,Rheinland-Pfalz,Rheinwind GmbH & Co. KG,Unabhängiger Projektierer und Betreiber aus der Region,600.0,7008.242,kWh,
