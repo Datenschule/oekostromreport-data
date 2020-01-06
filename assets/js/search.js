@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <p v-html="displayCriteria"></p>
 
     <p v-if="criteria[item['Kriterium-Websuche']]['show_profile'] == 'True'">
-      Zum <a href="#">RoWo-Anbieterprofil</a> von {{this.item['Firmenname']}}
+      Zum <a :href="this.item['RoWo-Anbieterprofil']">RoWo-Anbieterprofil</a> von {{this.item['Firmenname']}}
     </p>
 
     <p v-if="item['Begründung']" v-html="reasoning"></p>
