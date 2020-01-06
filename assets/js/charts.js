@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll('[data-piechart]').forEach((v, i) => {
-    pieChart(v);
-  });
+  if (document.querySelectorAll('[data-piechart]')) {
+    document.querySelectorAll('[data-piechart]').forEach((v, i) => {
+      pieChart(v);
+    });
+  }
 
-  document.querySelectorAll('[data-barchart]').forEach((v, i) => {
-    barChart(v);
-  });
+  if (document.querySelectorAll('[data-barchart]')) {
+    document.querySelectorAll('[data-barchart]').forEach((v, i) => {
+      barChart(v);
+    });
+  }
 });
 
 function pieChart(v) {
@@ -13,7 +17,7 @@ function pieChart(v) {
       width = 450 - margin.left - margin.right,
       height = 450 - margin.top - margin.bottom;
 
-  var radius = Math.min(width, height) / 2 - margin.top
+  var radius = Math.min(width, height) / 2 - margin.top;
 
   var svg = d3.select("#"+ v.dataset.piechart)
       .append("svg")
@@ -40,12 +44,12 @@ function pieChart(v) {
                 solar: '#ffff00'};
 
   var pie = d3.pie()
-      .value(function(d) {return d.value; })
-  var data_ready = pie(d3.entries(data))
+      .value(function(d) {return d.value; });
+  var data_ready = pie(d3.entries(data));
 
   var arcGenerator = d3.arc()
       .innerRadius(0)
-      .outerRadius(radius)
+      .outerRadius(radius);
 
 /*
   var Tooltip = d3.select("#"+ v.dataset.piechart)
@@ -228,14 +232,14 @@ function barChart(v) {
         Tooltip
           .html(`${d.tech} ${d.name} <br> Erstinbetriebnahme ${d.date} <br> Installierte Leistung ${d.value} MW`)
           .style("left", mX + "px")
-          .style("top", mY + "px")
+          .style("top", mY + "px");
       };
       var mouseleave = function(d) {
         Tooltip
-          .style("opacity", 0)
+          .style("opacity", 0);
         d3.select(this)
           .style("stroke", "lightgrey")
-          .style("opacity", 0.8)
+          .style("opacity", 0.8);
       };
 
       svg.append("text")
@@ -270,7 +274,6 @@ function barChart(v) {
         .attr("y", function(d) { return y(d.value) - 10; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value + ' MW'; });
-
 */
 
     });
