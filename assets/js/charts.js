@@ -216,10 +216,19 @@ function barChart(v) {
           .style("opacity", 1);
       };
       var mousemove = function(d) {
+        let parentSvg = this.parentNode.parentNode.getBoundingClientRect();
+        let parentY = parentSvg.top;
+        let parentH = parentSvg.height;
+        let parentW = parentSvg.width;
+        let mouseY = d3.mouse(this)[1];
+        let mouseX = d3.mouse(this)[0];
+        let mY = mouseY + parentY;
+        let mX = (mouseX) <= (parentW / 2) ? mouseX : (parentW / 2);
+
         Tooltip
           .html(`${d.tech} ${d.name} <br> Erstinbetriebnahme ${d.date} <br> Installierte Leistung ${d.value} MW`)
-          .style("left", (d3.mouse(this)[0] + 70) + "px")
-          .style("top", (d3.mouse(this)[1] + 10) + "px")
+          .style("left", mX + "px")
+          .style("top", mY + "px")
       };
       var mouseleave = function(d) {
         Tooltip
