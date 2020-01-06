@@ -47,7 +47,7 @@ function pieChart(v) {
       .innerRadius(0)
       .outerRadius(radius)
 
-
+/*
   var Tooltip = d3.select("#"+ v.dataset.piechart)
       .append("div")
       .attr("class", "tooltip")
@@ -83,7 +83,7 @@ function pieChart(v) {
       .style("opacity", 1)
       .style("stroke-width", "0")
   }
-
+*/
   svg
     .selectAll('mySlices')
     .data(data_ready)
@@ -95,10 +95,10 @@ function pieChart(v) {
     })
   //.attr("stroke", "#bfbfbf")
     .style("stroke-width", "0")
-    .style("opacity", 1)
-    .on("mouseover", mouseover)
-    .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave);
+    .style("opacity", 1);
+  //  .on("mouseover", mouseover)
+  //  .on("mousemove", mousemove)
+  //  .on("mouseleave", mouseleave);
 
 }
 
