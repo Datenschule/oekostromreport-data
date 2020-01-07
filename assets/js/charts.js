@@ -137,7 +137,11 @@ function barChart(v) {
 
       data.forEach((d) => {
         d.date = parseInt(d[5]);
-        d.value = d[11] / 1000; // kw -> mw
+        if (d[11] !== 'undefined') {
+          d.value = d[11] / 1000; // kw -> mw
+        } else {
+          d.value = 0;
+        }
         d.type = d[3];
         d.name = d[1];
         d.tech = d[2];

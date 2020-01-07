@@ -8,7 +8,7 @@ Die Düsseldorfer Naturstrom AG wurde 1998, gleich nach der Liberalisierung des 
 ## Woher kommt der Strom von Naturstrom?
 Der von Naturstrom angebotene Strom bestand im Jahr 2018 zu 99,9% aus Wasserkraft. Naturstrom bezieht den Strom vollständig über direkte Lieferverträge mit Ökostromanlagen in Deutschland und Österreich. Dabei achten Sie darauf, dass der Strombedarf von ihren Haushaltskunden ausschließlich über Kraftwerke in Deutschland gedeckt wird. Naturstrom bezog 2018 insgesamt von 35 Anlagen Strom. In diesem Jahr stammte 99,65% des Stroms von Bezugsanlagen älter als 21 Jahre. 40,2% des Stroms stammte 2018 aus Laufwasserkraftwerken mit mehr als 50 MW Installierter Leistung. 72,6 % des von Naturstrom bezogenen Stroms stammt aus Kraftwerken der Verbund Innkraftwerke GmbH bzw der Verbund Hydro Power GmbH
 
-<div id="barchart" data-barchart="barchart"  data-powerdata="/assets/data/provider/mann/kraftwerke.csv" class="chart"></div>
+<div id="barchart" data-barchart="barchart"  data-powerdata="/assets/data/provider/ews/kraftwerke.csv" class="chart"></div>
 
 
 ## Wie investiert Naturstrom in die Energiewende?
