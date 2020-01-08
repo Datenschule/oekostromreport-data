@@ -1,0 +1,39 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="400">
+    <g transform="translate(.5,.5)">
+        <g class="cell" transform="translate(1.5,2)">
+            <rect width="0" height="53.143204237329314" style="fill: rgb(255, 240, 0); stroke: rgb(255, 255, 255);"></rect>
+            <title>PV-Anlagen</title>
+            <text x="0" y="26.571602118664657" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;">PV-Anlagen</text>
+        </g>
+        <g class="cell" transform="translate(2,2)">
+            <rect width="37.82582535422329" height="53.143204237329314" style="fill: rgb(255, 240, 0); stroke: rgb(255, 255, 255);"></rect>
+            <title>Unspezifizierte Solaranlagen</title>
+            <text x="18.912912677111645" y="26.571602118664657" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;"></text>
+        </g>
+        <g class="cell" transform="translate(2,58.143204237329314)">
+            <rect width="37.82582535422329" height="331.66466730654616" style="fill: rgb(218, 218, 218); stroke: rgb(255, 255, 255);"></rect>
+            <title>Unspezifizierte Windenergieanlagen</title>
+            <text x="18.912912677111645" y="165.83233365327308" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;"></text>
+        </g>
+        <g class="cell" transform="translate(2,390.8078715438755)">
+            <rect width="37.82582535422329" height="7.192128456124522" style="fill: rgb(218, 218, 218); stroke: rgb(255, 255, 255);"></rect>
+            <title>Onshore-Windkraftwerke</title>
+            <text x="18.912912677111645" y="3.596064228062261" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;">Onshore</text>
+        </g>
+        <g class="cell" transform="translate(42.82582535422329,2)">
+            <rect width="518.9153543523175" height="396" style="fill: rgb(0, 158, 227); stroke: rgb(255, 255, 255);"></rect>
+            <title>Laufwasserkraftwerke</title>
+            <text x="259.45767717615877" y="198" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;">Laufwasserkraftwerke</text>
+        </g>
+        <g class="cell" transform="translate(562.7411797065408,2)">
+            <rect width="135.25882029345917" height="30.81409115815932" style="fill: rgb(0, 158, 227); stroke: rgb(255, 255, 255);"></rect>
+            <title>Speicher-Wasserkraftwerke</title>
+            <text x="67.62941014672958" y="15.40704557907966" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;">Speicher</text>
+        </g>
+        <g class="cell" transform="translate(562.7411797065408,33.81409115815932)">
+            <rect width="135.25882029345917" height="364.1859088418406" style="fill: rgb(0, 158, 227); stroke: rgb(255, 255, 255);"></rect>
+            <title>Pumpspeicher-Wasserkraftwerke</title>
+            <text x="67.62941014672958" y="182.0929544209203" dy=".35em" text-anchor="middle" style="font-size: 11px; font-family: Arial, Helvetica;">Pumpspeicher</text>
+        </g>
+    </g>
+</svg>
