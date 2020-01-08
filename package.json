@@ -2,7 +2,7 @@
   "name": "oekostrom-web",
   "version": "1.0.0",
   "scripts": {
-    "2json": "mkdir -p assets/data && cat assets/data-src/providers-january-2020-6.csv | yarn run csvtojson > assets/data/providers.json",
+    "2json": "mkdir -p assets/data && cat assets/data-src/providers-january-2020-7.csv | yarn run csvtojson > assets/data/providers.json",
     "cpcriteria": "cp assets/data-src/kriterien.csv assets/data/criteria.csv",
     "cpdeps": "cp node_modules/lunr/lunr.js node_modules/vue/dist/vue.min.js -t assets/js/",
     "rm1stlinefromjson": "sed '1d' assets/data/providers.json > assets/data/providers.json.tmp && mv assets/data/providers.json.tmp assets/data/providers.json",
