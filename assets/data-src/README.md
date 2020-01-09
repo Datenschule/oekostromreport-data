@@ -30,3 +30,7 @@ Die Bezugskraftwerksdaten beziehen sich auf das Jahr 2018. Leider sind die Infor
 ## Zugang und Nutzung der Daten
 
 Die Daten sind unter CC0 als Open Data frei zugänglich und können heruntergeladen werden.
+
+------
+
+Der [Ökostromreport 2020](https://www.robinwood.de/oekostromreport) ist als Kooperation zwischen [RobinWood](https://www.robinwood.de) und der [OKF](https://okfn.de) [Datenschule](https://datenschule.de) entstanden.
