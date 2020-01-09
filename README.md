@@ -1,7 +1,13 @@
-# Oekostrom Proto
+# Oekostromreport Data
+
+In diesem Repository haben wir die Anbieter- und Kraftwerksdaten für den Ökostromreport 2020 gesammelt und daraus die Websuche auf https://www.robinwood.de/oekostromreport gebaut.
+
+### [Hier geht es zu den Daten](https://github.com/Datenschule/oekostromreport-data/tree/gh-pages/assets/data)
 
 
-## Setup
+## Developer setup
+
+## Allgemein
 
 Diese Seite ist basiert auf [Jekyll](https://jekyllrb.com/) um schnell ein paar Templates und eine Prototyp-Website ausgeben zu können. Die Seite kann mit `$ jekyll build` gebaut oder mit `$ jekyll serve` als lokaler Dev-Server genutzt werden.
 
